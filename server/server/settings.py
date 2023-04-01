@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'nido'
 ]
 
@@ -48,6 +49,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware', 
     
 ]
 
@@ -106,6 +109,11 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8001',  # Replace with your frontend URL
+    'http://localhost:80',  # Replace with your frontend URL
+]
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -126,6 +134,8 @@ MEDIA_ROOT = '/media'
 MEDIA_URL = '/media/'
 
 
+STRIPE_API_KEY = 'pk_test_51MnTwYH4JG7lr5M7xBE6bAxWHUletv7z48idp9NITuOplGCxJm3bkAZIbmWWtI2lXPcSDJQNTu2ceVFTzrsgxi1300l9LWJNMZ'
+STRIPE_HOOKS_SECRET = 'sk_test_51MnTwYH4JG7lr5M7t2dLfXJXOq295uZnHUp9NHggdIDW31cftAoL6B3yLMqP4hsgYxx3rMLzIFDNpQQj1Bohscpz00pzuXG6Jz'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/staticfiles/'

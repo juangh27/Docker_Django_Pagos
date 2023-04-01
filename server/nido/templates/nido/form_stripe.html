@@ -1,0 +1,17 @@
+{% extends 'nido/stripe.html' %}
+{% block content %}
+  <h1>Checkout page</h1>
+  <form action="{% url 'create-checkout-session' %}" method="post">
+    {% csrf_token %}
+    {% for obj in prices %}
+      {% widthratio obj.unit_amount 100 1 as price %}
+      <label>
+        <input type="radio" name="lookup_key" value="{{ obj.lookup_key }}" {% if forloop.first %}checked{% endif %}>
+        {{ obj.nickname }} for {{ price|floatformat:2 }} {{ obj.currency|upper }} per {{ obj.recurring.interval }}
+      </label><br>
+    {% endfor %}
+    <p>
+      <button>Checkout</button>
+    </p>
+  </form>
+{% endblock content%}

@@ -1,0 +1,10 @@
+{% extends 'nido/stripe.html' %}
+{% block content %}
+<h1>Contact Us</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+<p>This is my home page content.</p>
+{% endblock content%}

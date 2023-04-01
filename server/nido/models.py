@@ -31,3 +31,9 @@ class Product_price(models.Model):
     
     def get_display_price(self):
         return "{0:.2f}".format(self.price / 100)
+    
+
+class Contact(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    message = models.TextField()
