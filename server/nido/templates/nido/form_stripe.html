@@ -1,7 +1,7 @@
 {% extends 'nido/stripe.html' %}
 {% block content %}
   <h1>Checkout page</h1>
-  <form action="{% url 'create-checkout-session' %}" method="post">
+  <form action="{% url 'nido:create-checkout-session' %}" method="post">
     {% csrf_token %}
     {% for obj in prices %}
       {% widthratio obj.unit_amount 100 1 as price %}

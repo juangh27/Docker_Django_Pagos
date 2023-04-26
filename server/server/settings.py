@@ -36,9 +36,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'nido',
     'django.contrib.staticfiles',
     'corsheaders',
-    'nido'
 ]
 
 MIDDLEWARE = [
@@ -51,7 +51,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'corsheaders.middleware.CorsMiddleware', 
-    
 ]
 
 ROOT_URLCONF = 'server.urls'

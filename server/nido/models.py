@@ -37,3 +37,20 @@ class Contact(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField()
     message = models.TextField()
+    
+class ChargeForm(models.Model):
+    amount = models.IntegerField()
+    token = models.CharField(max_length=252)
+    
+
+class ContactForm(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    message = models.CharField(max_length=500)
+    
+class PaymentForm(models.Model):
+    amount = models.DecimalField(max_digits=5, decimal_places=2)
+    card_number = models.CharField(max_length=16)
+    exp_month = models.IntegerField()
+    exp_year = models.IntegerField()
+    cvc = models.IntegerField()

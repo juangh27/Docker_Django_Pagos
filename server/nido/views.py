@@ -134,7 +134,7 @@ def stripe_index(request):
 #     )
 #     return redirect(checkout_session.url)
 
-YOUR_DOMAIN = 'http://localhost:80'
+YOUR_DOMAIN = 'http://localhost:80/nido'
 
 def create_checkout_session(request):
     stripe.api_key = settings.STRIPE_HOOKS_SECRET
@@ -164,7 +164,7 @@ def create_checkout_session(request):
     except Exception as e:
         return JsonResponse({'error': str(e)})
 
-    return JsonResponse(prices)
+    return JsonResponse(checkout_session)
 
 @csrf_exempt
 def charge(request):
@@ -184,3 +184,21 @@ def charge(request):
     else:
         return JsonResponse({'error': 'Invalid request method'})
     
+
+
+# def payment_view(request):
+#     test_data = {
+#         'amount': 1000,
+#         'currency': 'usd',
+#         'source': 'tok_visa',
+#         'description': 'Test payment',
+#     }
+
+#     # Send a test request to the Stripe API
+#     response = stripe.Charge.create(**test_data)
+
+#     # Save the response data to your model
+#     # ...
+
+#     # Display the response data to the user
+#     return render(request, 'payment_test.html', {'response': response})
