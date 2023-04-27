@@ -36,6 +36,4 @@ urlpatterns = [
     path('checkout/create-payment-intent', stripe.create_payment, name='create_payment'),
     
     
-    
-    
 ]

@@ -1,53 +1,22 @@
 from django.views.decorators.csrf import csrf_exempt
-# from django.views.decorators.http import require_POST
-# from django.http import JsonResponse, HttpRequest
-# import json
+from django.shortcuts import render
+from django.http import HttpResponse
 import stripe
 from django.conf import settings
-# from django.shortcuts import render
+from nido.models import DonationOption
+from django.core import serializers
 
+
+import json
 
 stripe.api_key = settings.STRIPE_HOOKS_SECRET
 
-# def calculate_order_amount(items):
-#     # Replace this constant with a calculation of the order's amount
-#     # Calculate the order total on the server to prevent
-#     # people from directly manipulating the amount on the client
-#     return 1400
-# def checkout(request):
-#     return render(request, 'stripe/checkout.html')
 
-# @csrf_exempt
-# def create_payment(request):
-#     if request.method == 'POST':
-#         try:
-#             data = json.loads(request.body)
-#             # Create a PaymentIntent with the order amount and currency
-#             intent = stripe.PaymentIntent.create(
-#                 amount=calculate_order_amount(data['items']),
-#                 currency='mxn',
-#                 payment_method_types=['card'],
-#             )
-#             return JsonResponse({
-#                 'clientSecret': intent['client_secret']
-#             })
-#         except Exception as e:
-#             return JsonResponse({'error': str(e)}, status=403)
-#     else:
-#         return JsonResponse({'error': 'Method not allowed.'}, status=405)
-
-# print("create_payment() was executed 111111111")
-
-
-from django.shortcuts import render
-from django.http import HttpResponse
-
-# The GET checkout form
-#
-# urlpattern: 
-#   path('checkout', views.checkout, name='checkout'),
 def checkout(request):
-    return render(request, 'stripe/checkout.html')
+    options = DonationOption.objects.all()
+    options_data = serializers.serialize('json', options)
+    return render(request, 'stripe/checkout.html', {'options': options})
+    # return render(request, 'stripe/checkout.html', {'options_data': options_data})
 
 # The POST checkout form
 #
@@ -56,7 +25,6 @@ def checkout(request):
 @csrf_exempt
 def create_payment(request):
     if request.method == 'POST':
-        import json
         
         try:
             # customer = stripe.Customer.create()
@@ -118,3 +86,45 @@ def create_payment(request):
     from django.http import Http404
     print("ndkjfndskj")
     raise Http404
+
+
+# from django.shortcuts import render
+# from django.views.decorators.http import require_POST
+# from django.http import JsonResponse, HttpRequest
+# import json
+
+
+# def calculate_order_amount(items):
+#     # Replace this constant with a calculation of the order's amount
+#     # Calculate the order total on the server to prevent
+#     # people from directly manipulating the amount on the client
+#     return 1400
+# def checkout(request):
+#     return render(request, 'stripe/checkout.html')
+
+# @csrf_exempt
+# def create_payment(request):
+#     if request.method == 'POST':
+#         try:
+#             data = json.loads(request.body)
+#             # Create a PaymentIntent with the order amount and currency
+#             intent = stripe.PaymentIntent.create(
+#                 amount=calculate_order_amount(data['items']),
+#                 currency='mxn',
+#                 payment_method_types=['card'],
+#             )
+#             return JsonResponse({
+#                 'clientSecret': intent['client_secret']
+#             })
+#         except Exception as e:
+#             return JsonResponse({'error': str(e)}, status=403)
+#     else:
+#         return JsonResponse({'error': 'Method not allowed.'}, status=405)
+
+# print("create_payment() was executed 111111111")
+
+
+# The GET checkout form
+#
+# urlpattern: 
+#   path('checkout', views.checkout, name='checkout'),

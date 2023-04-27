@@ -54,3 +54,8 @@ class PaymentForm(models.Model):
     exp_month = models.IntegerField()
     exp_year = models.IntegerField()
     cvc = models.IntegerField()
+    
+class DonationOption(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    amount = models.DecimalField(max_digits=6, decimal_places=2)

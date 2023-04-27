@@ -1,4 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
+
+    // In the JavaScript
+    // $(document).ready(function () {
+    //     $('.option-btn').click(function () {
+    //         var description = $(this).data('description');
+    //         var amount = $(this).data('amount');
+    //         $(this).siblings('.option-details').html('<p>' + description + '</p><p>' + amount + '</p>').show();
+    //     });
+    // });
+
     // your code here
 
     // This is your test publishable API key.
