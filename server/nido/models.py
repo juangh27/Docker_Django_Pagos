@@ -59,3 +59,6 @@ class DonationOption(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     amount = models.DecimalField(max_digits=6, decimal_places=2)
+    info = models.CharField(max_length=500)
+    aves = models.CharField(max_length=255)
+    entradas = models.CharField(max_length=255)

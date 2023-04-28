@@ -1,3 +1,9 @@
+function showForm(value) {
+    const form = document.getElementById("form");
+    form.style.display = "block";
+    // do something with the passed value
+    console.log("Passed value: " + value);
+}
 document.addEventListener("DOMContentLoaded", function () {
 
     // In the JavaScript
@@ -6,6 +12,16 @@ document.addEventListener("DOMContentLoaded", function () {
     //         var description = $(this).data('description');
     //         var amount = $(this).data('amount');
     //         $(this).siblings('.option-details').html('<p>' + description + '</p><p>' + amount + '</p>').show();
+    //     });
+    // });
+    // $(document).ready(function () {
+    //     $(".show-more").click(function () {
+    //         console.log("1");
+    //         console.log($(this).data("option-id"));
+    //         const optionId = $(this).data("option-id");
+    //         const details = $(".details[data-option-id='" + optionId + "']");
+    //         console.log(details);
+    //         $('.payment-form').toggle();
     //     });
     // });
 
@@ -23,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
     checkStatus();
 
     document
-        .querySelector("#payment-form")
+        .querySelector("#form")
         .addEventListener("submit", handleSubmit);
 
     let emailAddress = '';
