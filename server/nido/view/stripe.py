@@ -5,6 +5,7 @@ import stripe
 from django.conf import settings
 from nido.models import DonationOption
 from django.core import serializers
+import json
 
 
 import json
@@ -13,9 +14,22 @@ stripe.api_key = settings.STRIPE_HOOKS_SECRET
 
 
 def checkout(request):
-    options = DonationOption.objects.all()
+    options = DonationOption.objects.all().order_by('-id')
     return render(request, 'stripe/checkout.html', {'options': options})
  
+def calculate_order_amount(items):
+    print("the items are:")
+    print(items)    
+
+    if items == [{'id': '1'}] :
+        return 500000
+    elif items == [{'id': '2'}] :
+        return 100000
+    elif items == [{'id': '3'}] :
+        return 35000
+    else:
+        return 5000
+    
 @csrf_exempt
 def create_payment(request):
     if request.method == 'POST':
@@ -24,15 +38,8 @@ def create_payment(request):
             # customer = stripe.Customer.create()
             data = json.loads(request.body)
             # data = json.loads(request.POST)
-            print(data)
+            # print(data)
 
-            def calculate_order_amount(items):
-                print(items)
-                # total_amount=0
-                # test_amount = items.amount
-                # for item in items:
-                #     total_amount += item.amount # replace "price" with the attribute name that holds the price of the item
-                return 5000
 
 
             intent = stripe.PaymentIntent.create(

@@ -1,66 +1,26 @@
-// function showForm(value) {
-//     // const form = document.getElementById("form");
-//     // form.style.display = "none";
-//     // setTimeout(() => {
-//         // }, 600);
-        
-//         // do something with the passed value
-//     console.log("Passed value: " + value);
-//     // var card = document.querySelector('.card');
-//     // $('.card').toggleClass('bg-primary bg-success');
-//     // var hiddenInput = document.getElementById("myHiddenInput");
-//     // var val = hiddenInput.value;
-//     // alert("The hidden value is: " + val)
-//     // alert("The hidden value is: " + card)
-//     // form.reset();
-
-// }
-
-// function showForm(value) {
-//     const form = document.getElementById("form");
-//     form.style.display = "block";
-// }
-
-
-// function function1(value_passed) {
-//     // alert("This is function 1.");
-//     var hiddenInput = document.getElementById("myHiddenInput");
-//     var val = hiddenInput.value;
-//     // alert("The hidden value is: " + value_passed);
-//     const card = $(event.target).closest('.card');
-
-//     // $('.card').toggleClass('bg-secondary bg-light text-black');
-//     //  $('.card').removeClass('bg-secondary bg-light text-black');
-//     // card.toggleClass('bg-light bg-secondary text-white');
-//     // $('.card').toggleClass('bg-light bg-secondary text-white');
-//     // $('.card').toggleClass('bg-light bg-secondary text-white');
-//   }
-function showform(value_passed) {
-    form.style.display = "block";
-    $('.card').removeClass('bg-secondary text-white');
-    const card = $(event.target).closest('.card');
-    card.toggleClass('bg-secondary text-white');
-    stripeform(value_passed);
+function showForm(value) {
+    const form = document.getElementById("form");
+    form.style.display = "none";
+    setTimeout(() => {
+        form.style.display = "block";
+    }, 600);
+    console.log("Passed value: " + value);
+    form.reset();
 
 }
 
-// function getValue() {
-    //     var hiddenInput = document.getElementById("myHiddenInput");
-//     var val = hiddenInput.value;
-//     alert("The hidden value is: " + val);
 //   }
+function function1(value_passed) {
+    $('.card').removeClass('bg-secondary text-white');
+    const card = $(event.target).closest('.card');
+    card.toggleClass('bg-secondary text-white');
 
+}
+const ite = document.getElementById("payment_type");
 
+document.addEventListener("DOMContentLoaded", function () {
 
-// your code here
-function stripeform(item_id) {
-    // This is your test publishable API key.
-    const stripe = Stripe("pk_test_51MnTwYH4JG7lr5M7xBE6bAxWHUletv7z48idp9NITuOplGCxJm3bkAZIbmWWtI2lXPcSDJQNTu2ceVFTzrsgxi1300l9LWJNMZ");
-
-    // The items the customer wants to buy
-    // const hiddenInput = document.getElementById("payment_type");
-    const items = [{ id: item_id }];
-
+    const stripe = Stripe("");
     let elements;
 
     initialize();
@@ -113,11 +73,6 @@ function stripeform(item_id) {
             },
         });
 
-        // This point will only be reached if there is an immediate error when
-        // confirming the payment. Otherwise, your customer will be redirected to
-        // your `return_url`. For some payment methods like iDEAL, your customer will
-        // be redirected to an intermediate site first to authorize the payment, then
-        // redirected to the `return_url`.
         if (error.type === "card_error" || error.type === "validation_error") {
             showMessage(error.message);
         } else {
@@ -183,4 +138,4 @@ function stripeform(item_id) {
         }
     }
 
-}
+});

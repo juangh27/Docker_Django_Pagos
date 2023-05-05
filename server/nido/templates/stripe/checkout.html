@@ -4,7 +4,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Accept a payment</title>
+  <title>Nido / Donaciones</title>
   <meta name="description" content="A demo of a payment on Stripe" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
@@ -24,16 +24,17 @@
     <div class="row justify-content-md-center">
       <h1>Donaciones</h1>
 
-      <div class="row">
+      <div class="row mb-4">
 
         {% for option in options %}
-        <div class="col-4">
+        <input type="hidden" id="myHiddenInput" value="{{option.amount}}">
+        <div class="col-12 col-md-4">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">{{ option.name }}</h5>
               <p class="card-text">{{ option.description }}</p>
               <p class="card-text">Costo: ${{ option.amount }}</p>
-              <div class="details" >
+              <div class="details">
                 <p>Detalles del donativo {{ option.name }}:</p>
                 <ul>
                   <li>{{option.info}}</li>
@@ -42,25 +43,34 @@
                 </ul>
               </div>
               <!-- <button class="btn btn-primary show-more" data-option-id="{{ option.pk }}" >Hacer donativo</button> -->
-              <button id="show-form-button" onclick="showForm('value-to-pass')">Show Form</button>
+              <button id="show-form-button" onclick="showform('{{ option.pk }}');">Hacer donativo</button>
               <!-- <button class="btn btn-primary show-more" onclick="showForm('{{ option.pk }}')">Hacer donativo</button> -->
             </div>
           </div>
         </div>
         {% endfor %}
 
+      </div>
 
-        <!--  -->
 
-        <!-- Display a payment form -->
-        <div class="col">
+      <!--  -->
+
+      <!-- Display a payment form -->
+      <div class="row mb-4">
+        <!-- <div class="col-lg-6 mx-auto"> -->
+        <div class="col-12 col-xl-6 mx-auto">
 
           <form id="form" style="display: none;">
-          <!-- <form id="payment-form"  style="display: none;"> -->
+            <!-- <div>
+              <p>*opcional</p>
+              <input type="text" id="comentario">
+            </div> -->
+            <!-- <form id="payment-form"  style="display: none;"> -->
             <div id="link-authentication-element">
               <!--Stripe.js injects the Link Authentication Element-->
             </div>
             <div id="payment-element">
+            <input type="hidden" id="payment_type" value="">
               <!--Stripe.js injects the Payment Element-->
             </div>
             <button id="submit">
@@ -72,6 +82,7 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 </body>
 

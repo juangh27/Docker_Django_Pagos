@@ -110,7 +110,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:8001',  # Replace with your frontend URL
-    'http://localhost:80',  # Replace with your frontend URL
+    'http://localhost:80', 
+    'https://r.stripe.com',
+    # Replace with your frontend URL
 ]
 
 # Internationalization
