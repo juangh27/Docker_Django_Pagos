@@ -1,7 +1,19 @@
 version: '3.7'
 
 services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234Qwer
+      - POSTGRES_DB=nidodb
+    volumes:
+      - .postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5435:5432"
+      
   server:
+    container_name: nido_server
     volumes:
       - ./server:/app
 
@@ -9,7 +21,11 @@ services:
       - .env
     build: ./server
     ports:
-      - "8000:8000"
+      - "8001:8000"
+    depends_on:
+      - db
+
+
   nginx:
     build: ./nginx
     volumes:
@@ -18,3 +34,6 @@ services:
       - "80:80"
     depends_on:
       - server
+
+volumes:
+  postgres_data:
