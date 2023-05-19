@@ -36,8 +36,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'nido',
     'django.contrib.staticfiles',
-    'nido'
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -48,6 +49,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware', 
 ]
 
 ROOT_URLCONF = 'server.urls'
@@ -76,8 +79,12 @@ WSGI_APPLICATION = 'server.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'nidodb',
+        'USER': 'postgres',
+        'PASSWORD': '1234Qwer',
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
 
@@ -101,6 +108,13 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8001',  # Replace with your frontend URL
+    'http://localhost:80', 
+    'https://r.stripe.com',
+    # Replace with your frontend URL
+]
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -117,8 +131,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 
+MEDIA_ROOT = '/media'
+MEDIA_URL = '/media/'
+
+
+STRIPE_API_KEY = 'pk_test_51MnTwYH4JG7lr5M7xBE6bAxWHUletv7z48idp9NITuOplGCxJm3bkAZIbmWWtI2lXPcSDJQNTu2ceVFTzrsgxi1300l9LWJNMZ'
+STRIPE_HOOKS_SECRET = 'sk_test_51MnTwYH4JG7lr5M7t2dLfXJXOq295uZnHUp9NHggdIDW31cftAoL6B3yLMqP4hsgYxx3rMLzIFDNpQQj1Bohscpz00pzuXG6Jz'
+
 STATIC_URL = '/static/'
-STATIC_ROOT = '/static'
+STATIC_ROOT = '/staticfiles/'
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
 # Default primary key field type

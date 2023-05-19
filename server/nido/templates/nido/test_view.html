@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Request Demo</title>
+    <script src="https://unpkg.com/@shopify/app-bridge@1.28.0/dist/index.js"></script>
+    <script>
+        async function showPaymentRequest() {
+            const response = await fetch('/payment-request');
+            const paymentRequest = await response.json();
+            const paymentResponse = await new PaymentRequest(paymentRequest.methodData, paymentRequest.details, paymentRequest.options).show();
+            console.log(paymentResponse);
+        }
+    </script>
+</head>
+<body>
+    <button onclick="showPaymentRequest()">Pay with Card</button>
+</body>
+</html>

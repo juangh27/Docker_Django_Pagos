@@ -1,0 +1,6 @@
+<p>Payment successful</p>
+<p>Amount: {{ amount / 100 }} {{ currency.upper() }}</p>
+<p>Order ID: {{ order_id }}</p>
+
+
+<a href="{% url 'nido:checkout' %}">Checkout</a>

@@ -1,0 +1,13 @@
+{% extends 'nido/stripe.html' %}
+
+{% block content %}
+<h1>Payment Form</h1>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <!-- {% for field in form %}
+  {{ field }}
+  {% endfor %} -->
+  <button type="submit">Submit Payment</button>
+</form>
+{% endblock %}

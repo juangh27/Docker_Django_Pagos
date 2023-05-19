@@ -1,0 +1,9 @@
+{% extends 'nido/stripe.html' %}
+
+
+{% block content %}
+  <h1>Payment Error</h1>
+  {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+{% endif %}
+  {% endblock %}
