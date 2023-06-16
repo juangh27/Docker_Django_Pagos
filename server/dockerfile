@@ -21,8 +21,9 @@ RUN apk add --virtual .build-deps --no-cache postgresql-dev gcc python3-dev musl
 
 RUN apk add --no-cache libpq
 
-RUN pip install watchdog
+# RUN pip install watchdog
 
 COPY ./entrypoint.sh /
 ENTRYPOINT ["sh", "/entrypoint.sh"]
 
+        

@@ -16,6 +16,8 @@ services:
     container_name: nido_server
     volumes:
       - ./server:/app
+      - ./server/static:/app/static
+
 
     env_file:
       - .env

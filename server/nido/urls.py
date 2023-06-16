@@ -15,6 +15,7 @@ urlpatterns = [
     # path('success/', contact.contact, name='success'),
     path('success/', TemplateView.as_view(template_name='nido/success.html'), name='success'),
     path('aves/', TemplateView.as_view(template_name='vistas/aves.html'), name='success'),
+    path('base/', TemplateView.as_view(template_name='vistas/base.html'), name='success'),
     
     path('create_checkout_session/', views.create_checkout_session, name='create-checkout-session'),
     path('stripe/', views.stripe_index),
