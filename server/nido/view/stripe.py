@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import stripe
 from django.conf import settings
-from nido.models import DonationOption
+from nido.models import DonationOption1
 from django.core import serializers
 import json
 
@@ -14,7 +14,7 @@ stripe.api_key = settings.STRIPE_HOOKS_SECRET
 
 
 def checkout(request):
-    options = DonationOption.objects.all().order_by('-id')
+    options = DonationOption1.objects.all().order_by('-id')
     return render(request, 'stripe/checkout.html', {'options': options})
  
 def calculate_order_amount(items):

@@ -3,6 +3,7 @@
 
 # revisar que el archivo sh sea LF en vez de CRLF
 
+apt-get update && apt-get install -y postgresql-client && python app.py
 python manage.py makemigrations
 python manage.py migrate
 

@@ -78,6 +78,12 @@
     manage.py migrate
 
     docker exec -it nido_server sh
+    docker exec -it nido_server sh
+    sudo docker exec -it docker_django_pagos_db_1 sh
+
+
+    may need to run this: psql -U postgres  -d nidodb -c "ALTER DATABASE nidodb REFRESH COLLATION VERSION;"
+
 
 
 
